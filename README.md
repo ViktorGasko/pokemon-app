@@ -12,8 +12,8 @@ napr. 24 pokémonov naraz, pri každej zmene currentPage by sme zavolali "https:
 kde offset x by bol zvolený podľa currentPage. Potom by sme načítali detaily o každom z týchto 24 pokémonov. Tento prístup by spôsobil
 čakanie pre zmene stránok, ale keďže by sme naraz načítali výrazne menšie množstvo pokémonov, toto čakanie by bolo zanedbateľné.
 Riešenie ktoré som zvolil som sa však rozhodol nechať pretože: 1. Zadanie požaduje zobrazenie iba 9 pokémonov, z čoho vyplíva
-že dlhé čakanie na načítanie pokémonov nenastane (100-200 pokémonov je načítanćh veľmi rýchlo). 2. Rozhodol som sa zobrazovať sprity
-pokémonov SearchListe. Pokiaľ by sme zvolili druhé riešenie tak by sme museli získavať detaily o pokémonoch pri každej zmene
+že dlhé čakanie na načítanie pokémonov nenastane (100-200 pokémonov je načítaných veľmi rýchlo). 2. Rozhodol som sa zobrazovať sprity
+pokémonov v SearchListe. Pokiaľ by sme zvolili druhé riešenie tak by sme museli získavať detaily o pokémonoch pri každej zmene
 search baru a teda hľadanie by bolo výrazne spomalené. Možnosťou by samozrejme bolo pri hľadaní zobrazovať iba mená, ktore by sme mohli
 získať veľmi rýchlo z https://pokeapi.co/api/v2/pokemon?limit=x&offset=y - nezískavali by sme teda pokémon detaily čo je tá pomalá časť,
 ale chcel som obrázky a ako som spomenul riešenie požaduje iba 9 pokémonov a teda problém s pomalým počiatočným načítaním odpadá.
