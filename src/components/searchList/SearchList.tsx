@@ -63,7 +63,7 @@ const SearchList: React.FC<searchProps> = ({ pokeData }) => {
         <div className={styles["search-list"]}>
           <ul>
             {searchArray.map((pokemon) => (
-              <li key={pokemon.id} className={styles["search-list__li"]}>
+              <li key={pokemon.id + "li"} className={styles["search-list__li"]}>
                 <SearchListItem key={pokemon.id} pokemon={pokemon} />
               </li>
             ))}

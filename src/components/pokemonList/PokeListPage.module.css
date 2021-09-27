@@ -1,5 +1,7 @@
 .poke-page {
   background: #f5dfb3;
+  border-end-start-radius: 15px;
+  border-end-end-radius: 15px;
   display: block;
   position: relative;
   top: 60px;

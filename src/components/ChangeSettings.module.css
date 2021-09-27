@@ -1,0 +1,57 @@
+.settings {
+  position: fixed;
+  top: 5px;
+  left: 5px;
+  background: #444;
+  border: 2px solid black;
+  border-radius: 5px;
+  z-index: 4;
+}
+
+.settings__label {
+  font-weight: bold;
+  display: block;
+  font-size: 1.25rem;
+  color: white;
+  padding: 10px 15px 0px 15px;
+}
+
+.settings__input {
+  display: block;
+  width: 140px;
+  font-size: 1.1rem;
+  padding: 3px 10px;
+  margin: 10px 0;
+  border-radius: 3px;
+  border: 2px solid black;
+}
+
+.settings__input:focus {
+  outline: none;
+  border: 2px solid orange;
+}
+
+.settings__submit {
+  margin: 8px;
+  margin-right: 15px;
+  padding: 10px 15px;
+  background: #222;
+  border: none;
+  cursor: pointer;
+  color: white;
+  border-radius: 4px;
+  float: right;
+}
+.settings__submit:hover {
+  background-color: #111;
+}
+
+.settings__btn--close {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background: none;
+}
+.settings__btn--close:hover {
+  color: orange;
+}

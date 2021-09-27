@@ -21,14 +21,26 @@ function App() {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<string>("");
   const { pokemonDetail } = useContext(PokemonDetailContext);
+  // passed as props through NavBar to ChangeSettings
+  const [limit, setLimit] = useState<string>("60");
+  const [offset, setOffset] = useState<string>("0");
 
-  //Called during initial render, results contain objects of type {name:string , url:string}
-  // url is then use to get additional informations about pokemon a its sprite -> data are
+  const limitHandler = (val: string) => {
+    setLimit(val);
+  };
+
+  const offsetHandler = (val: string) => {
+    setOffset(val);
+  };
+
+  //Called during initial render or after change off limit or offset, results contain objects of type
+  // {name:string , url:string} url is then use to get additional informations about pokemon a its sprite -> data are
   //stored localy... slow process when limit in initial fetch is increased
   const fetchPokemons = useCallback(async () => {
+    setIsLoading(true);
     try {
       const response = await fetch(
-        "https://pokeapi.co/api/v2/pokemon?limit=80&offset=0"
+        `https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offset}`
       );
       if (!response.ok) {
         throw new Error("Couldn't load the data.");
@@ -66,7 +78,7 @@ function App() {
       console.log(error);
     }
     setIsLoading(false);
-  }, []);
+  }, [limit, offset]);
 
   useEffect(() => {
     fetchPokemons();
@@ -111,7 +123,12 @@ function App() {
   return (
     <React.Fragment>
       <div className="App">
-        <NavBar></NavBar>
+        <NavBar
+          limit={limit}
+          offset={offset}
+          setLimit={limitHandler}
+          setOffset={offsetHandler}
+        ></NavBar>
         <SearchList pokeData={pokeData} />
         {content}
       </div>
