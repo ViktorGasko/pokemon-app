@@ -6,19 +6,19 @@ ako 1000 pokémonov, počet pokémonov ktorých zobrazí aplikácia je možne up
 "https://pokeapi.co/api/v2/pokemon?limit=80&offset=0" vo funkcii fetchPokemons() v App.tsx. Po zavolaní tohto linku získame
 maticu hodnôt s menom pokemona a linkom na detaily pokémona ktoré obsahujú napr. sprite pokémona. Je teda ďalej nutné získať
 detaily každého pokémona z tejto matice. Keďže tento proces sa deje pri otvorení aplikácie, pri zvolenom väčšom množstve (napr. limit=800)
-može toto načítanie trvať aj niekoľko sekúnd. To je asi aj najväčší mínus aplikácie. Lepšie by bolo načítavať menšie množstvo pokémonov
+može toto načítanie trvať pár sekúnd + ukladáme všetky dáta v pamäti. Lepšie riešenie by zrejme bolo načítavať menšie množstvo pokémonov
 pri zmene stránky (presnejšie zmeny hodnoty currentPage v componente PokeList ). Teda pokiaľ by sme mali zvolené zobrazovanie
 napr. 24 pokémonov naraz, pri každej zmene currentPage by sme zavolali "https://pokeapi.co/api/v2/pokemon?limit=24&offset=x"
 kde offset x by bol zvolený podľa currentPage. Potom by sme načítali detaily o každom z týchto 24 pokémonov. Tento prístup by spôsobil
 čakanie pre zmene stránok, ale keďže by sme naraz načítali výrazne menšie množstvo pokémonov, toto čakanie by bolo zanedbateľné.
-Riešenie ktoré som zvolil som sa však rozhodol nechať pretože: 1. Zadanie požaduje zobrazenie iba 9 pokémonov, z čoho vyplíva
-že dlhé čakanie na načítanie pokémonov nenastane (100-200 pokémonov je načítaných veľmi rýchlo). 2. Rozhodol som sa zobrazovať sprity
+Riešenie ktoré som zvolil som sa však rozhodol nechať pretože: 1. Zadanie požaduje zobrazenie iba 9 pokémonov, z čoho vyplýva
+že dlhé čakanie na načítanie pokémonov nenastane (aj 100-200 pokémonov je načítaných celkom rýchlo). 2. Rozhodol som sa zobrazovať sprity
 pokémonov v SearchListe. Pokiaľ by sme zvolili druhé riešenie tak by sme museli získavať detaily o pokémonoch pri každej zmene
-search baru a teda hľadanie by bolo výrazne spomalené. Možnosťou by samozrejme bolo pri hľadaní zobrazovať iba mená, ktore by sme mohli
-získať veľmi rýchlo z https://pokeapi.co/api/v2/pokemon?limit=x&offset=y - nezískavali by sme teda pokémon detaily čo je tá pomalá časť,
+search baru a teda hľadanie by bolo spomalené. Možnosťou by samozrejme bolo pri hľadaní zobrazovať iba mená pokémonov, ktoré by sme mohli
+získať veľmi rýchlo z https://pokeapi.co/api/v2/pokemon?limit=x&offset=y - nezískavali by sme teda pokémon detaily čo je tá pomalšia časť,
 ale chcel som obrázky a ako som spomenul riešenie požaduje iba 9 pokémonov a teda problém s pomalým počiatočným načítaním odpadá.
-Čo sa týka kódu nemám predstavu či je dobrý alebo nie... redux som nepoužil, pôvodne som neplánoval použiť ani context ale nakoniec
-sa ukázalo že sa zíde. Čo sa týka testovania s tým moc skúseností nemám tak sa necháme prekvapiť.
+Čo sa týka kódu nemám predstavu či je dobrý alebo nie... redux som nepoužil, context postačil. Čo sa týka testovania s tým moc skúseností nemám
+tak sa necháme prekvapiť.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

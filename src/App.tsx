@@ -33,7 +33,7 @@ function App() {
     setOffset(val);
   };
 
-  //Called during initial render or after change off limit or offset, results contain objects of type
+  //Called during initial render or after change of limit or offset, results contain objects of type
   // {name:string , url:string} url is then use to get additional informations about pokemon a its sprite -> data are
   //stored localy... slow process when limit in initial fetch is increased
   const fetchPokemons = useCallback(async () => {
