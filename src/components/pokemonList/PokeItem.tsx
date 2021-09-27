@@ -10,6 +10,8 @@ interface pokeProps {
 const PokeItem: React.FC<pokeProps> = ({ pokemon }) => {
   const { setPokemonDetail } = useContext(PokemonDetailContext);
 
+  // after clicking on PokeItem pokemonDetail in pokemonDetail-context is set and
+  // PokeDetail is rendered
   const handleShowDetails = () => {
     setPokemonDetail(pokemon);
   };

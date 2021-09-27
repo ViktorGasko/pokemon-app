@@ -6,6 +6,10 @@ const PokemonDetailContext = React.createContext({
   setPokemonDetail: (value: pokemonType) => {},
 });
 
+// After click on PokeItem or SearchListItem pokemonDetailHandler() is executed and
+// pokemonDetail is set to choosen pokemon. PokemonDetail is cleaned after
+// clicking on close button in PokeDetail or by clicking on background rendered together with
+// PokeDetail.
 export const PokemonDetailContextProvider = (props: any) => {
   const [pokemonDetail, setPokemonDetail] = useState<pokemonType>(
     {} as pokemonType

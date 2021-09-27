@@ -5,7 +5,7 @@ import { pokemonType } from "../../App";
 interface pokeProps {
   pokeData: pokemonType[];
 }
-
+// used to render PokeItems - get data based on currentPage in PokeList
 const PokeListPage: React.FC<pokeProps> = ({ pokeData }) => {
   return (
     <div className={styles["poke-page"]}>

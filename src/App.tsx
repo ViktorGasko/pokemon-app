@@ -22,6 +22,9 @@ function App() {
   const [error, setError] = useState<string>("");
   const { pokemonDetail } = useContext(PokemonDetailContext);
 
+  //Called during initial render, results contain objects of type {name:string , url:string}
+  // url is then use to get additional informations about pokemon a its sprite -> data are
+  //stored localy... slow process when limit in initial fetch is increased
   const fetchPokemons = useCallback(async () => {
     try {
       const response = await fetch(
@@ -69,6 +72,9 @@ function App() {
     fetchPokemons();
   }, [fetchPokemons]);
 
+  //error is rendered if there was error during executing of fetchPokemons(),
+  // loadSpinner is rendered during executing of fetchPokemons(),
+  // PokeList is rendered if fetchPokemons() was executed sucessfully
   let content = null;
   if (error) {
     content = (
@@ -86,6 +92,8 @@ function App() {
     content = <PokeList pokeData={pokeData} />;
   }
 
+  //if value pokeDetail from pokemon-Detail-context contains a pokemon ,
+  // PokeDetail is rendered in separate root-div using Portal
   let pokeDetail = null;
   if (pokemonDetail.name) {
     pokeDetail = [

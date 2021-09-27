@@ -11,12 +11,15 @@ const ItemsPerPage: React.FC<itemsPerPageProps> = ({
   setItemsNumber,
 }) => {
   const [showMenu, setShowMenu] = useState(false);
+  // used to show menu, in which different number of PokeItems to show can be choose
   const showMenuHandler = () => {
     if (!showMenu) {
       setShowMenu(true);
     }
   };
 
+  // eventListener so showMenu can be change (which causes to close menu for choosing number of pokemons to show) by
+  // clicking on random position in window
   useEffect(() => {
     if (!showMenu) return;
     const closeOnClick = () => {

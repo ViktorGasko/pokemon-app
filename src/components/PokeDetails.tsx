@@ -12,6 +12,8 @@ interface extendedPokemon extends pokemonType {
 
 const PokeDetails = () => {
   const { pokemonDetail, setPokemonDetail } = useContext(PokemonDetailContext);
+  // Sprites from pokeAPI are quite small therefore picture from pokemondb.net is used.
+  // Sprite is used as backup
   const [pokeData, setPokeData] = useState<extendedPokemon>({
     ...pokemonDetail,
     description: "",
@@ -20,10 +22,14 @@ const PokeDetails = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<string>("");
 
+  //PokemonDetail in pokemonDeatil-context is set to empty after clicking on close button
   const handleClose = () => {
     setPokemonDetail({} as pokemonType);
   };
 
+  //Fetching of additional data about pokemon - english pokedex description
+  //Error text is set of pokedex entry doesnt exist of if there was error during fetching
+  //executed during initial render
   const fetchPokemon = useCallback(async () => {
     try {
       const response = await fetch(
@@ -56,6 +62,7 @@ const PokeDetails = () => {
     fetchPokemon();
   }, [fetchPokemon]);
 
+  //LoadSpinner is rendered during executing of fetchPokemon()
   let content;
   if (isLoading) {
     content = <LoadSpinner />;
@@ -69,6 +76,7 @@ const PokeDetails = () => {
           <CloseIcon fontSize="large" />
         </button>
         <div className={styles["poke-detail__img-wrap"]}>
+          {/* onError - if pic from  pokemondb.net was not found, sprite is used*/}
           <img
             className={styles["poke-detail__img"]}
             src={pokeData.externalPic}
@@ -84,6 +92,7 @@ const PokeDetails = () => {
           <i>{error ? error : pokeData.description}</i>
         </h3>
         <div className={styles["poke-detail__types-wrap"]}>
+          {/* styles[`pokemon-type--${type}`] - used for different type color */}
           {pokeData.types.map((type) => (
             <p
               className={[

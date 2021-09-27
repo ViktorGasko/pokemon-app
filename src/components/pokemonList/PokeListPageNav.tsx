@@ -10,6 +10,9 @@ interface pageNavProps {
   setItemsNumber: (num: number) => void;
   onPageChange: (num: number) => void;
 }
+
+// navigation in PokeList - clickable page numbers and option
+// to set number of showed pokemons (in child component ItemsPerPage)
 const PokeListPageNav: React.FC<pageNavProps> = ({
   currentPage,
   totalPageNumber,
@@ -19,6 +22,11 @@ const PokeListPageNav: React.FC<pageNavProps> = ({
 }) => {
   const [pageNavArray, setPageNavArray] = useState<number[]>([]);
 
+  // sets pageNavArray used to render buttons used for navigation between items
+  // array contains max 5 numbers around currentPage
+  //Example 1: [2,3,4,5,6] if current page is 4
+  //Example 2: [1,2,3,4,5] if current page is 2
+  //Example 3: [1,2] if current page is 1 or 2 and totalPageNumber is 2
   const pageNavArrayHandler = useCallback(() => {
     const navArr = [currentPage];
     let i: number = 1;

@@ -5,6 +5,9 @@ const SearchContext = React.createContext({
   onStringChange: (value: string) => {},
 });
 
+// searchString string gets its value from input in Navbar
+// used to show SearchList, set to "" in Navbar after clicking closeButton
+// or after choosing pokemon to show in SearchList
 export const SearchContextProvider = (props: any) => {
   const [searchString, setSearchString] = useState<string>("");
 

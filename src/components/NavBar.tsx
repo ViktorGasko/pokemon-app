@@ -4,7 +4,9 @@ import SearchContext from "../store/search-context";
 import { useContext } from "react";
 
 const NavBar = () => {
+  // because searchString was used in multiple places, its value is stored in context
   const { searchString, onStringChange } = useContext(SearchContext);
+  // used to clear input and therefore also hide search results
   const closeBtn = searchString ? (
     <button className={styles["navbar__btn--close"]}>
       <CloseIcon fontSize="medium" onClick={() => onStringChange("")} />

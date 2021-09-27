@@ -19,6 +19,9 @@ const SearchList: React.FC<searchProps> = ({ pokeData }) => {
   const { searchString } = useContext(SearchContext);
   const prevSearchString = useRef(searchString);
 
+  // function for searching pokemon's, executed after every searchString change,
+  // prevSearchString.current !== searchString prevents from executing after searchArray change
+  // results are sorted based on position of search string in pokemon's name
   const searchPokemon = useCallback(() => {
     if (prevSearchString.current !== searchString) {
       let sortArray: pokemonType[] = [];
@@ -55,6 +58,7 @@ const SearchList: React.FC<searchProps> = ({ pokeData }) => {
 
   return (
     <React.Fragment>
+      {/* if searchString is empty SearchList exist only as empty React.Fragment */}
       {searchString ? (
         <div className={styles["search-list"]}>
           <ul>

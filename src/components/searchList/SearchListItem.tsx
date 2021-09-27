@@ -7,11 +7,13 @@ import PokemonDetailContext from "../../store/pokemonDetail-context";
 interface pokeProps {
   pokemon: pokemonType;
 }
-
+// element in Search list - pokemon's name and sprite
 const SearchListItem: React.FC<pokeProps> = ({ pokemon }) => {
   const { onStringChange } = useContext(SearchContext);
   const { setPokemonDetail } = useContext(PokemonDetailContext);
 
+  // after clicking on pokemon in SearchList, pokemonDetail in pokemonDetail-context is set,
+  // therefore PokeDetail is rendered, and searchString is set to "", therefore, SearchList is closed
   const handleShowDetails = () => {
     setPokemonDetail(pokemon);
     onStringChange("");
