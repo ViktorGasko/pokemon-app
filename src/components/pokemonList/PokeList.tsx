@@ -36,6 +36,23 @@ const PokeList: React.FC<pokeProps> = ({ pokeData }) => {
   };
 
   const itemsNumberHandler = (number: number) => {
+    if (number - itemsNumber === 24 || number - itemsNumber === 12) {
+      if (currentPage % 2 === 0) {
+        setCurrentPage(currentPage / 2);
+      } else {
+        setCurrentPage(Math.floor(currentPage / 2) + 1);
+      }
+    } else if (number - itemsNumber === 36) {
+      if (currentPage % 4 === 0) {
+        setCurrentPage(currentPage / 4);
+      } else {
+        setCurrentPage(Math.floor(currentPage / 4) + 1);
+      }
+    } else if (number - itemsNumber === -24 || number - itemsNumber === -12) {
+      setCurrentPage(currentPage * 2 - 1);
+    } else if (number - itemsNumber === -36) {
+      setCurrentPage(currentPage * 4 - 3);
+    }
     setItemsNumber(number);
   };
 

@@ -165,3 +165,9 @@
     height: 220px;
   }
 }
+@media only screen and (max-width: 340px) {
+  .poke-detail {
+    height: 92%;
+    width: 92%;
+  }
+}
