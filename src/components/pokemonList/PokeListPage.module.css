@@ -1,0 +1,33 @@
+.poke-page {
+  background: #f5dfb3;
+  display: block;
+  position: relative;
+  top: 60px;
+  min-height: calc(100vh - 150px);
+  width: 1160px;
+  align-self: center;
+  padding: 5px 10px;
+}
+
+@media only screen and (max-width: 1160px) {
+  .poke-page {
+    width: 970px;
+  }
+}
+
+@media only screen and (max-width: 970px) {
+  .poke-page {
+    width: 780px;
+  }
+}
+
+@media only screen and (max-width: 780px) {
+  .poke-page {
+    position: relative;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    padding: 5px;
+    text-align: center;
+  }
+}

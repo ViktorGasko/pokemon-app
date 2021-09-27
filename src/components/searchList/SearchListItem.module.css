@@ -1,0 +1,33 @@
+.search-list-item {
+  display: flex;
+  align-items: center;
+}
+
+.search-list-item:hover {
+  color: orange;
+  background: #444;
+}
+
+.search-list-item__img-wrap {
+  display: inline-block;
+  height: 70px;
+  width: 70px;
+}
+
+.search-list-item__img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.search-list-item__name {
+  width: 200px;
+  overflow-wrap: break-word;
+  padding: 0 10px;
+}
+
+@media only screen and (max-width: 590px) {
+  .search-list-item__name {
+    width: 170px;
+  }
+}

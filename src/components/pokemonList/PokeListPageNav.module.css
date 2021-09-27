@@ -1,0 +1,30 @@
+.page-nav {
+  display: block;
+  position: relative;
+  top: 60px;
+  align-self: center;
+  padding: 10px;
+}
+
+.page-nav__button {
+  padding: 10px 15px;
+  font-weight: bold;
+  color: white;
+  background: #333;
+  border: 2px solid black;
+  border-radius: 5px;
+}
+
+.page-nav__button--active {
+  color: black;
+  background: orange;
+}
+
+.page-nav-amount {
+  display: block;
+  position: relative;
+  padding: 10px;
+  top: 45px;
+  align-self: center;
+  font-size: 1.1rem;
+}
