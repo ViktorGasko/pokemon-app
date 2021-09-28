@@ -1,9 +1,9 @@
 .page-nav {
   display: block;
   position: relative;
-  top: 60px;
   align-self: center;
   padding: 10px;
+  height: 50px;
 }
 
 .page-nav__button {
@@ -11,7 +11,7 @@
   font-weight: bold;
   color: white;
   background: #333;
-  border: 2px solid black;
+  border: 2px solid #111;
   border-radius: 5px;
 }
 
@@ -21,10 +21,11 @@
 }
 
 .page-nav-amount {
+  color: white;
   display: block;
   position: relative;
-  padding: 10px;
-  top: 45px;
+  height: 40px;
+  padding-bottom: 10px;
   align-self: center;
   font-size: 1.1rem;
 }

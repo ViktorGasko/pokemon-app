@@ -2,29 +2,29 @@
   background: none;
   font-size: 1.1rem;
   font-weight: bold;
+  color: orange;
 }
 
-/* Dropdown Content (Hidden by Default) */
 .per-page-menu {
   position: absolute;
   display: flex;
-  top: 8px;
-  left: 40px;
+  top: 2px;
+  left: 30px;
   z-index: 1;
   border-radius: 3px;
-  background: #444;
+  background: #333;
   border: 1px solid black;
   animation: show-menu 0.25s ease-in;
 }
 .per-page-menu__button {
   font-weight: bold;
   padding: 5px 20px;
-  background: #444;
+  background: #333;
   color: white;
   border-radius: 3px;
 }
 .per-page-menu__button:hover {
-  background: #333;
+  background: #222;
 }
 
 @keyframes show-menu {

@@ -1,6 +1,12 @@
 .App {
   display: flex;
   flex-direction: column;
+  background-color: black;
+}
+.nav-height-clone {
+  display: block;
+  height: 60px;
+  width: 100px;
 }
 
 .App__child-wrap {
@@ -11,5 +17,8 @@
 }
 
 .App__error {
-  padding-left: 50px;
+  color: white;
+  display: block;
+  text-align: center;
+  width: inherit;
 }

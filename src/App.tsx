@@ -123,6 +123,7 @@ function App() {
   return (
     <React.Fragment>
       <div className="App">
+        <div className="nav-height-clone"></div>
         <NavBar
           limit={limit}
           offset={offset}
