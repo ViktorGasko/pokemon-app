@@ -50,6 +50,10 @@
   margin: 10px 0;
 }
 
+.poke-detail__name::first-letter {
+  text-transform: uppercase;
+}
+
 .poke-detail__description {
   margin: 5px 0;
   font-weight: normal;

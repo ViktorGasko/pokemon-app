@@ -19,10 +19,16 @@ const PokeItem: React.FC<pokeProps> = ({ pokemon }) => {
   return (
     <div className={styles["pokemon"]} onClick={() => handleShowDetails()}>
       <div className={styles["pokemon__img-wrap"]}>
-        <img src={pokemon.url ? pokemon.url : "pokemon-icon.jpg"} alt="pokemon" className={styles["pokemon__img"]} />
+        {/* onError - if sprite was not found defailt pokemon pic is used*/}
+        <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png`} 
+        onError={(event: any) => {
+         event.target.onerror = null;
+         event.target.src = "pokemon-icon.jpg";
+        }}
+        alt="pokemon" className={styles["pokemon__img"]} />
       </div>
       <div className={styles["pokemon__name-wrap"]}>
-        <p className={styles["pokemon__name"]}>{pokemon.name}</p>
+        <p className={styles["pokemon__name"]}>{pokemon.name.replace(/[/-]/g," ")}</p>
       </div>
     </div>
   );

@@ -35,9 +35,9 @@
   margin: 0;
   font-size: 1.25rem;
   overflow-y: hidden;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
+}
+.pokemon__name::first-letter {
+  text-transform: uppercase;
 }
 
 .pokemon:hover {

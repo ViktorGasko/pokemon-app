@@ -44,7 +44,7 @@ const PokeList: React.FC<pokeProps> = ({ pokeData }) => {
   };
   // used to change amount of shown items, passed as prop PokeListPageNav and then to ItemsPerPage
   // where it can be called, inside function currentPage is also changed, so we are on approximately
-  // same position in pokeData - we can at least few of the same pokemons,
+  // same position in pokeData - we can see at least few of the same pokemons,
   //window.scrollTo(0, 0); used to scroll to top
   const itemsNumberHandler = (number: number) => {
     if (number - itemsNumber === 24 || number - itemsNumber === 12) {

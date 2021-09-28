@@ -25,6 +25,9 @@
   overflow-wrap: break-word;
   padding: 0 10px;
 }
+.search-list-item__name::first-letter{
+  text-transform: uppercase;
+}
 
 @media only screen and (max-width: 590px) {
   .search-list-item__name {

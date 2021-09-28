@@ -13,7 +13,6 @@ export interface pokemonType {
   name: string;
   url: string;
   id: string;
-  types: string[];
 }
 
 function App() {
@@ -34,8 +33,9 @@ function App() {
   };
 
   //Called during initial render or after change of limit or offset, results contain objects of type
-  // {name:string , url:string} url is then use to get additional informations about pokemon a its sprite -> data are
-  //stored localy... slow process when limit in initial fetch is increased
+  // {name:string , url:string}, pokemon's id is obtained from url
+  // pokemons are stored in pokeData ... store lets say 1000 could be a problem but every pokemon
+  // contains only relatively short strings
   const fetchPokemons = useCallback(async () => {
     setIsLoading(true);
     try {
@@ -47,31 +47,14 @@ function App() {
       }
       const { results } = await response.json();
       const resultDetails: pokemonType[] = [];
-      await Promise.all(
-        results.map((result: { name: string; url: string }) =>
-          fetch(result.url)
-        )
-      )
-        .then((promises) =>
-          Promise.all(promises.map((promise: any) => promise.json()))
-        )
-        .then((pokemons) =>
-          pokemons.forEach((pokemon) => {
-            resultDetails.push({
-              name: pokemon.name,
-              id: pokemon.id,
-              url: pokemon.sprites.front_default,
-              types: pokemon.types.map(
-                (obj: {
-                  slot: number;
-                  type: { name: string; url: string };
-                }) => {
-                  return obj.type.name;
-                }
-              ),
-            });
-          })
-        );
+      results.forEach((result: { name: string; url: string }, index: number) => {
+        const parts = result.url.split('/')
+        const id = parts[parts.length - 2];
+        resultDetails.push({
+          url: result.url,
+          name: result.name,
+          id: id
+      })})
       setPokeData(resultDetails);
     } catch (error) {
       setError("Sorry, couldn't load Pokémons. Try later.");

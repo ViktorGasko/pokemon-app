@@ -1,24 +1,15 @@
 # Pokemon-app ... budem písať po slovensky
 
-Aplikácia na zobrazenie pokémonov z [pokeapi.co](https://pokeapi.co/). Po počiatočnom načítaní dát je možné prezerať si
-pokémonov zobrazených v jednoduchých itemoch alebo nájsť pokémona podľa mena v searchbare. Na pokeapi je dostupných viac
-ako 1000 pokémonov, počet pokémonov ktorých zobrazí aplikácia je možne upravit zmenou linku
-"https://pokeapi.co/api/v2/pokemon?limit=80&offset=0" vo funkcii fetchPokemons() v App.tsx. Po zavolaní tohto linku získame
-maticu hodnôt s menom pokemona a linkom na detaily pokémona ktoré obsahujú napr. sprite pokémona. Je teda ďalej nutné získať
-detaily každého pokémona z tejto matice. Keďže tento proces sa deje pri otvorení aplikácie, pri zvolenom väčšom množstve (napr. limit=800)
-može toto načítanie trvať pár sekúnd + ukladáme všetky dáta v pamäti. Lepšie riešenie by zrejme bolo načítavať menšie množstvo pokémonov
-pri zmene stránky (presnejšie zmeny hodnoty currentPage v componente PokeList ). Teda pokiaľ by sme mali zvolené zobrazovanie
-napr. 24 pokémonov naraz, pri každej zmene currentPage by sme zavolali "https://pokeapi.co/api/v2/pokemon?limit=24&offset=x"
-kde offset x by bol zvolený podľa currentPage. Potom by sme načítali detaily o každom z týchto 24 pokémonov. Tento prístup by spôsobil
-čakanie pre zmene stránok, ale keďže by sme naraz načítali výrazne menšie množstvo pokémonov, toto čakanie by bolo zanedbateľné.
-Riešenie ktoré som zvolil som sa však rozhodol nechať pretože: 1. Zadanie požaduje zobrazenie iba 9 pokémonov, z čoho vyplýva
-že dlhé čakanie na načítanie pokémonov nenastane (aj 100-200 pokémonov je načítaných celkom rýchlo). 2. Rozhodol som sa zobrazovať sprity
-pokémonov v SearchListe. Pokiaľ by sme zvolili druhé riešenie tak by sme museli získavať detaily o pokémonoch pri každej zmene
-search baru a teda hľadanie by bolo spomalené. Možnosťou by samozrejme bolo pri hľadaní zobrazovať iba mená pokémonov, ktoré by sme mohli
-získať veľmi rýchlo z https://pokeapi.co/api/v2/pokemon?limit=x&offset=y - nezískavali by sme teda pokémon detaily čo je tá pomalšia časť,
-ale chcel som obrázky a ako som spomenul riešenie požaduje iba 9 pokémonov a teda problém s pomalým počiatočným načítaním odpadá.
-Čo sa týka kódu nemám predstavu či je dobrý alebo nie... redux som nepoužil, context postačil. Čo sa týka testovania s tým moc skúseností nemám
-tak sa necháme prekvapiť.
+Aplikácia na zobrazenie pokémonov z [pokeapi.co](https://pokeapi.co/). Pri počiatočnom načítaní sú získané 
+dáta defaultného množstva pokémonov. Pri zmene množstva pokémov ktorých chceme vidieť sú opäť načítané dáta pokémonov.
+V pokeAPI je dohromady 1118 pokémonov a takéto množstvo teda môžeme načítať. Každý pokémon obsahuje iba meno, url na jeho
+detaily a nami je ešte pridaná id pokémona získaná z jeho url. Keďže sú to všetko krátke stringy a množstvo pokémonov nie je až 
+také veľké (v zadaní sa dokonca požaduje len 9 pokémonov) povedal som si že nie potrebné použiť pagination popr. Router Link
+a naraz načítavať len menší počet pokémonov pri otvorení stránky. Id uložené v pokémonovy môžeme použiť aj v linku na získanie sprite
+pokémona v SearchListe a PokeListe. Pri zobrazení pokémona som sa rozhodol zobraziť aj jeho popis a typy (z rôznych linkov), pretože
+karta pokémona bola príliš prázdna. Tak isto používam aj väčší obrázok z iného zdroja, ktorý je nahradení spritom pokiaľ nie je dostupný.
+Redux mi neprišlo potrebné používať, stačili contexty. Ešte by sa asi zišiel context na zmenu aktuálnej stránky alebo pridanie tlačítka na 
+návrat na prvú stránku v PokeListPageNav lebo momentálne sa nie je možné vrátit priamo na prvú stránku.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

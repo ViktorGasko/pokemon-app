@@ -6,8 +6,10 @@ import LoadSpinner from "./UI/LoadSpinner";
 import PokemonDetailContext from "../store/pokemonDetail-context";
 
 interface extendedPokemon extends pokemonType {
+  types: string[] ;
   description: string;
   externalPic: string;
+  sprite: string;
 }
 
 const PokeDetails = () => {
@@ -16,6 +18,8 @@ const PokeDetails = () => {
   // Sprite is used as backup
   const [pokeData, setPokeData] = useState<extendedPokemon>({
     ...pokemonDetail,
+    types: [],
+    sprite: "",
     description: "",
     externalPic: `https://img.pokemondb.net/artwork/${pokemonDetail.name}.jpg`,
   });
@@ -30,7 +34,7 @@ const PokeDetails = () => {
   //Fetching of additional data about pokemon - english pokedex description
   //Error text is set of pokedex entry doesnt exist of if there was error during fetching
   //executed during initial render
-  const fetchPokemon = useCallback(async () => {
+  const fetchPokemonDescription = useCallback(async () => {
     try {
       const response = await fetch(
         `https://pokeapi.co/api/v2/pokemon-species/${pokemonDetail.id}/`
@@ -58,9 +62,35 @@ const PokeDetails = () => {
     setIsLoading(false);
   }, [pokemonDetail.id]);
 
+  //Fetching of additional data about pokemon - its types together with
+  // sprite  - we can create link only using pokemons id without fetchin
+  // but now we have option to get link together with types so why not
+  const fetchPokemonTypes = useCallback(async () => {
+    try {
+      const response = await fetch(
+        pokeData.url
+      );
+      if (!response.ok) {
+        throw new Error("Couldn't load the types.");
+      }
+      const {types, sprites} = await response.json()
+      setPokeData((prevState) => ({
+        ...prevState,
+        sprite: sprites.front_default,
+        types: types.map((obj: {
+                      slot: number;
+                     type: { name: string; url: string };
+                     }) => {return obj.type.name}),
+      }));
+    } catch (error) {
+      console.log(error);
+    }
+  }, [pokeData.url]);
+
   useEffect(() => {
-    fetchPokemon();
-  }, [fetchPokemon]);
+    fetchPokemonDescription();
+    fetchPokemonTypes();
+  }, [fetchPokemonDescription, fetchPokemonTypes]);
 
   //LoadSpinner is rendered during executing of fetchPokemon()
   let content;
@@ -83,11 +113,11 @@ const PokeDetails = () => {
             alt="pokemon"
             onError={(event: any) => {
               event.target.onerror = null;
-              event.target.src = pokeData.url ? pokeData.url : "pokemon-icon.jpg";
+              event.target.src = pokeData.sprite ? pokeData.sprite : "pokemon-icon.jpg";
             }}
           />
         </div>
-        <h1 className={styles["poke-detail__name"]}>{pokeData.name}</h1>
+        <h1 className={styles["poke-detail__name"]}>{pokeData.name.replace(/[/-]/g," ")}</h1>
         <h3 className={styles["poke-detail__description"]}>
           <i>{error ? error : pokeData.description}</i>
         </h3>

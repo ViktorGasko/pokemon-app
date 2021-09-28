@@ -25,13 +25,17 @@ const SearchListItem: React.FC<pokeProps> = ({ pokemon }) => {
       onClick={() => handleShowDetails()}
     >
       <div className={styles["search-list-item__img-wrap"]}>
-        <img
-          src={pokemon.url}
+        {/* onError - if sprite was not found defailt pokemon pic is used*/}
+      <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png`} 
+        onError={(event: any) => {
+         event.target.onerror = null;
+         event.target.src = "pokemon-icon.jpg";
+        }}
           alt="pokemon"
           className={styles["search-list-item__img"]}
         />
       </div>
-      <p className={styles["search-list-item__name"]}>{pokemon.name}</p>
+      <p className={styles["search-list-item__name"]}>{pokemon.name.replace(/[/-]/g," ")}</p>
     </div>
   );
 };
