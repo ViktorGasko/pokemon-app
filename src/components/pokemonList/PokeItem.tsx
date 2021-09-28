@@ -19,7 +19,7 @@ const PokeItem: React.FC<pokeProps> = ({ pokemon }) => {
   return (
     <div className={styles["pokemon"]} onClick={() => handleShowDetails()}>
       <div className={styles["pokemon__img-wrap"]}>
-        <img src={pokemon.url} alt="" className={styles["pokemon__img"]} />
+        <img src={pokemon.url ? pokemon.url : "pokemon-icon.jpg"} alt="pokemon" className={styles["pokemon__img"]} />
       </div>
       <div className={styles["pokemon__name-wrap"]}>
         <p className={styles["pokemon__name"]}>{pokemon.name}</p>

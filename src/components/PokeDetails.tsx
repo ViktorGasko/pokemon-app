@@ -83,7 +83,7 @@ const PokeDetails = () => {
             alt="pokemon"
             onError={(event: any) => {
               event.target.onerror = null;
-              event.target.src = pokeData.url;
+              event.target.src = pokeData.url ? pokeData.url : "pokemon-icon.jpg";
             }}
           />
         </div>

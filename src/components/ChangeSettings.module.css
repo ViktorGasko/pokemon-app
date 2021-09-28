@@ -31,17 +31,20 @@
   border: 2px solid orange;
 }
 
-.settings__submit {
-  padding: 10px 15px;
+.settings__btn {
+  padding: 10px 12px;
   background: #222;
   border: none;
   cursor: pointer;
   color: white;
   border-radius: 4px;
-  float: right;
 }
-.settings__submit:hover {
+.settings__btn:hover {
   background-color: #111;
+}
+
+.settings__btn--submit{
+  float: right;
 }
 
 .settings__btn--close {
