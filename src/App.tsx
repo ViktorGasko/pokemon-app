@@ -21,7 +21,7 @@ function App() {
   const [error, setError] = useState<string>("");
   const { pokemonDetail } = useContext(PokemonDetailContext);
   // passed as props through NavBar to ChangeSettings
-  const [limit, setLimit] = useState<string>("60");
+  const [limit, setLimit] = useState<string>("9");
   const [offset, setOffset] = useState<string>("0");
 
   const limitHandler = (val: string) => {
@@ -47,14 +47,15 @@ function App() {
       }
       const { results } = await response.json();
       const resultDetails: pokemonType[] = [];
-      results.forEach((result: { name: string; url: string }, index: number) => {
-        const parts = result.url.split('/')
+      results.forEach((result: { name: string; url: string }) => {
+        const parts = result.url.split("/");
         const id = parts[parts.length - 2];
         resultDetails.push({
           url: result.url,
           name: result.name,
-          id: id
-      })})
+          id: id,
+        });
+      });
       setPokeData(resultDetails);
     } catch (error) {
       setError("Sorry, couldn't load Pokémons. Try later.");

@@ -6,7 +6,7 @@ import LoadSpinner from "./UI/LoadSpinner";
 import PokemonDetailContext from "../store/pokemonDetail-context";
 
 interface extendedPokemon extends pokemonType {
-  types: string[] ;
+  types: string[];
   description: string;
   externalPic: string;
   sprite: string;
@@ -67,21 +67,20 @@ const PokeDetails = () => {
   // but now we have option to get link together with types so why not
   const fetchPokemonTypes = useCallback(async () => {
     try {
-      const response = await fetch(
-        pokeData.url
-      );
+      const response = await fetch(pokeData.url);
       if (!response.ok) {
         throw new Error("Couldn't load the types.");
       }
-      const {types, sprites} = await response.json()
-      const mapedTypes = types.map((obj: {
-          slot: number;
-          type: { name: string; url: string };
-          }) => {return obj.type.name})
+      const { types, sprites } = await response.json();
+      const mapedTypes = types.map(
+        (obj: { slot: number; type: { name: string; url: string } }) => {
+          return obj.type.name;
+        }
+      );
       setPokeData((prevState) => ({
         ...prevState,
         sprite: sprites.front_default,
-        types: mapedTypes
+        types: mapedTypes,
       }));
     } catch (error) {
       console.log(error);
@@ -92,7 +91,7 @@ const PokeDetails = () => {
     fetchPokemonDescription();
     fetchPokemonTypes();
     return () => {
-      setPokeData({} as extendedPokemon); 
+      setPokeData({} as extendedPokemon);
     };
   }, [fetchPokemonDescription, fetchPokemonTypes]);
 
@@ -117,11 +116,15 @@ const PokeDetails = () => {
             alt="pokemon"
             onError={(event: any) => {
               event.target.onerror = null;
-              event.target.src = pokeData.sprite ? pokeData.sprite : "pokemon-icon.jpg";
+              event.target.src = pokeData.sprite
+                ? pokeData.sprite
+                : "pokemon-icon.jpg";
             }}
           />
         </div>
-        <h1 className={styles["poke-detail__name"]}>{pokeData.name.replace(/[/-]/g," ")}</h1>
+        <h1 className={styles["poke-detail__name"]}>
+          {pokeData.name.replace(/[/-]/g, " ")}
+        </h1>
         <h3 className={styles["poke-detail__description"]}>
           <i>{error ? error : pokeData.description}</i>
         </h3>

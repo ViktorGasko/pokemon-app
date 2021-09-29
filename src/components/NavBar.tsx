@@ -21,8 +21,11 @@ const NavBar: React.FC<navProps> = (props) => {
   };
   // used to clear input and therefore also hide search results
   const closeBtn = searchString ? (
-    <button className={styles["navbar__btn--close"]}>
-      <CloseIcon fontSize="medium" onClick={() => onStringChange("")} />
+    <button
+      className={styles["navbar__btn--close"]}
+      onClick={() => onStringChange("")}
+    >
+      <CloseIcon fontSize="medium" />
     </button>
   ) : null;
 

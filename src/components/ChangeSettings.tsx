@@ -51,11 +51,11 @@ const ChangeSettings: React.FC<changeSettingProps> = ({
     setLocalOffset(val);
   };
 
-  const reloadHandler = (event: any ) => {
-    event.preventDefault()
-    setVisibility()
-    window.location.reload()
-  }
+  const reloadHandler = (event: any) => {
+    event.preventDefault();
+    setVisibility();
+    window.location.reload();
+  };
 
   return (
     <div className={styles["settings"]}>
@@ -94,11 +94,16 @@ const ChangeSettings: React.FC<changeSettingProps> = ({
             }}
           />
         </label>
-        <button className={styles["settings__btn"]} onClick={reloadHandler}>Reaload</button>
+        <button className={styles["settings__btn"]} onClick={reloadHandler}>
+          Reload
+        </button>
         <input
           type="submit"
           value="Apply"
-          className={[styles["settings__btn"],styles["settings__btn--submit"]].join(" ")}
+          className={[
+            styles["settings__btn"],
+            styles["settings__btn--submit"],
+          ].join(" ")}
         />
       </form>
     </div>

@@ -17,13 +17,13 @@ interface searchProps {
 const SearchList: React.FC<searchProps> = ({ pokeData }) => {
   const [searchArray, setSearchArray] = useState<pokemonType[]>([]);
   const { searchString } = useContext(SearchContext);
-  const prevSearchString = useRef(searchString);
+  const prevSearchString = useRef("");
 
   // function for searching pokemon's, executed after every searchString change,
   // prevSearchString.current !== searchString prevents from executing after searchArray change
   // results are sorted based on position of search string in pokemon's name
   const searchPokemon = useCallback(() => {
-    if (prevSearchString.current !== searchString) {
+    if (searchString && prevSearchString.current !== searchString) {
       let sortArray: pokemonType[] = [];
       const sortedArray: pokemonType[] = [];
       if (searchString.length !== 0) {
@@ -37,7 +37,7 @@ const SearchList: React.FC<searchProps> = ({ pokeData }) => {
           sortArray = searchArray;
         }
         sortArray.forEach((element) => {
-          if (element.name.indexOf(searchString) >= 0)
+          if (element.name.indexOf(searchString.toLowerCase()) >= 0)
             sortedArray.push(element);
         });
         sortedArray.sort((firstEl, secondEl) =>

@@ -2,15 +2,16 @@
 
 Aplikácia na zobrazenie pokémonov z [pokeapi.co](https://pokeapi.co/). Pri počiatočnom načítaní sú získané
 dáta defaultného množstva pokémonov. Pri zmene množstva pokémov ktorých chceme vidieť sú opäť načítané dáta pokémonov.
-V pokeAPI je dohromady 1118 pokémonov a takéto množstvo teda môžeme načítať. Každý pokémon obsahuje iba meno, url na jeho
-detaily a nami je ešte pridaná id pokémona získaná z jeho url. Keďže sú to všetko krátke stringy a množstvo pokémonov nie je až
+V pokeAPI je dohromady 1118 pokémonov a takéto množstvo teda môžeme načítať. Každý pokémon obsahuje iba meno, url z ktorého získame detaily daného pokémona
+a nami je ešte pridaná id pokémona získaná z jeho url. Keďže sú to všetko krátke stringy a množstvo pokémonov nie je až
 také veľké (v zadaní sa dokonca požaduje len 9 pokémonov) povedal som si že nie potrebné použiť pagination popr. pagination s React Router
-a naraz načítavať len menší počet pokémonov pri otvorení stránky. To by ale bolo možné použiť search len pre danú stránku. Takto môžeme
-prehľadávať všetkých pokémonov ktorých sme získali pri počiatočnom načítaní. Id uložené v pokémonovy môžeme použiť aj v linku na získanie sprite
-pokémona v SearchListe a PokeListe. Pri zobrazení pokémona som sa rozhodol zobraziť aj jeho popis a typy (z rôznych linkov), pretože
+a naraz načítavať len menší počet pokémonov pri otvorení stránky. To by malo ďalšiu nevýhodu a to tú že bolo možné použiť search len pre danú stránku. Takto môžeme
+prehľadávať všetkých pokémonov ktorých sme získali pri počiatočnom načítaní. Id pokémona používame na získanie spritu v SearchListe a PokeListe. Toto nie je veľmi dobré riešenie, pretože nekontrolujem či táto adresa existuje (pri každom zobrazenom pokémonovy by som musel na tú adresu fetchovať a kontrolovať response či existuje). Pokiaľ neexistuje má naštastie HTML img onerror event v ktorom nahradíme sprite defaultným obrázkom (stylizovany pokemon text). Zopár pokémonov na pozícií 900-1000 nemá sprite tak to môžete skontrolovať. A jo počet pokémonov sa dá nastaviť v pravom hornom rohu po kliknutí na obrázok. Pri zobrazení pokémona som sa rozhodol zobraziť aj jeho popis a typy (z rôznych linkov), pretože
 karta pokémona bola príliš prázdna. Tak isto používam aj väčší obrázok z iného zdroja, ktorý je nahradení spritom pokiaľ nie je dostupný.
 Redux mi neprišlo potrebné používať, stačili contexty. Ešte by sa asi zišiel context na zmenu aktuálnej stránky alebo pridanie tlačítka na
 návrat na prvú stránku v PokeListPageNav, pretože momentálne sa nie je možné vrátiť sa priamo na prvú stránku.
+
+A teraz sa dostávame k testovaniu... nepodarilo sa mi nahradiť fetche mock funkciami takže pri testovaní posielame http requesty ..... ale funkcií s fetch v kóde nie je až tak veľa a iba pýtame nie až tak veľké dáta tak v tomto prípade to zrejme až taká tragédia nie je. Taktiež sa mi nepodarilo skontrovať záložné obrázky, a to preto lebo sa zobrazujú pomocou onerror eventu.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
