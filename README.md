@@ -1,15 +1,16 @@
 # Pokemon-app ... budem písať po slovensky
 
-Aplikácia na zobrazenie pokémonov z [pokeapi.co](https://pokeapi.co/). Pri počiatočnom načítaní sú získané 
+Aplikácia na zobrazenie pokémonov z [pokeapi.co](https://pokeapi.co/). Pri počiatočnom načítaní sú získané
 dáta defaultného množstva pokémonov. Pri zmene množstva pokémov ktorých chceme vidieť sú opäť načítané dáta pokémonov.
 V pokeAPI je dohromady 1118 pokémonov a takéto množstvo teda môžeme načítať. Každý pokémon obsahuje iba meno, url na jeho
-detaily a nami je ešte pridaná id pokémona získaná z jeho url. Keďže sú to všetko krátke stringy a množstvo pokémonov nie je až 
-také veľké (v zadaní sa dokonca požaduje len 9 pokémonov) povedal som si že nie potrebné použiť pagination popr. Router Link
-a naraz načítavať len menší počet pokémonov pri otvorení stránky. Id uložené v pokémonovy môžeme použiť aj v linku na získanie sprite
+detaily a nami je ešte pridaná id pokémona získaná z jeho url. Keďže sú to všetko krátke stringy a množstvo pokémonov nie je až
+také veľké (v zadaní sa dokonca požaduje len 9 pokémonov) povedal som si že nie potrebné použiť pagination popr. pagination s React Router
+a naraz načítavať len menší počet pokémonov pri otvorení stránky. To by ale bolo možné použiť search len pre danú stránku. Takto môžeme
+prehľadávať všetkých pokémonov ktorých sme získali pri počiatočnom načítaní. Id uložené v pokémonovy môžeme použiť aj v linku na získanie sprite
 pokémona v SearchListe a PokeListe. Pri zobrazení pokémona som sa rozhodol zobraziť aj jeho popis a typy (z rôznych linkov), pretože
 karta pokémona bola príliš prázdna. Tak isto používam aj väčší obrázok z iného zdroja, ktorý je nahradení spritom pokiaľ nie je dostupný.
-Redux mi neprišlo potrebné používať, stačili contexty. Ešte by sa asi zišiel context na zmenu aktuálnej stránky alebo pridanie tlačítka na 
-návrat na prvú stránku v PokeListPageNav lebo momentálne sa nie je možné vrátit priamo na prvú stránku.
+Redux mi neprišlo potrebné používať, stačili contexty. Ešte by sa asi zišiel context na zmenu aktuálnej stránky alebo pridanie tlačítka na
+návrat na prvú stránku v PokeListPageNav, pretože momentálne sa nie je možné vrátiť sa priamo na prvú stránku.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

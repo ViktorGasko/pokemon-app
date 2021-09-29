@@ -74,13 +74,14 @@ const PokeDetails = () => {
         throw new Error("Couldn't load the types.");
       }
       const {types, sprites} = await response.json()
+      const mapedTypes = types.map((obj: {
+          slot: number;
+          type: { name: string; url: string };
+          }) => {return obj.type.name})
       setPokeData((prevState) => ({
         ...prevState,
         sprite: sprites.front_default,
-        types: types.map((obj: {
-                      slot: number;
-                     type: { name: string; url: string };
-                     }) => {return obj.type.name}),
+        types: mapedTypes
       }));
     } catch (error) {
       console.log(error);
@@ -90,6 +91,9 @@ const PokeDetails = () => {
   useEffect(() => {
     fetchPokemonDescription();
     fetchPokemonTypes();
+    return () => {
+      setPokeData({} as extendedPokemon); 
+    };
   }, [fetchPokemonDescription, fetchPokemonTypes]);
 
   //LoadSpinner is rendered during executing of fetchPokemon()
