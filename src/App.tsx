@@ -66,6 +66,9 @@ function App() {
 
   useEffect(() => {
     fetchPokemons();
+    return () => {
+      setPokeData([] as pokemonType[]);
+    };
   }, [fetchPokemons]);
 
   //error is rendered if there was error during executing of fetchPokemons(),

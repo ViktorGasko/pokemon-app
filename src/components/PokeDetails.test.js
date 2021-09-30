@@ -131,7 +131,7 @@ describe("PokeDetails", () => {
   //     expect(backup).toHaveAttribute("src", "pokemon-icon.jpg");
   //   });
 
-  test("PokeDetails pokemon button", async () => {
+  test("PokeDetails pokemon close button", async () => {
     let pokemonDetail = {
       name: "bulbasaur",
       url: "https://pokeapi.co/api/v2/pokemon/1/",
